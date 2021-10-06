@@ -2,7 +2,7 @@ Shell笔记
 ========================================
 
 .. toctree::
-   :maxdepth: 2   
+   :maxdepth: 1   
    :caption: Linux基础
    
    linux/linux-kernel-and-shell-introduce.md
