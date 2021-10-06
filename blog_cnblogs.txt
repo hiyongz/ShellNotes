@@ -1,0 +1,2 @@
+
+在[Windows上实现iOS APP自动化测试：tidevice + WDA + facebook-wda / appium](https://blog.csdn.net/u010698107/article/details/119492403)中介绍了使用阿里开源的tidevice 和 facebook-wda实现在Windows上进行iOS APP自动化测试。本文介绍如何使用tidevice + WDA +  airtest进行iOS APP自动化测试。
