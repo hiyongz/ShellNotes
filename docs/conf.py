@@ -20,7 +20,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # -- Project information -----------------------------------------------------
 
-project = 'Python笔记'
+project = 'Shell笔记'
 copyright = '2021, hiyongz'
 author = 'hiyongz'
 
