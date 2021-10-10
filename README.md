@@ -28,13 +28,13 @@ getopt用法实例
 使用方法：
 ```bash
 # 无参数
-$ start_bat.vbs "start_bat.bat"
+$ test_bat.vbs "test_bat.bat"
 
 # 有参数
-$ start_wda.vbs "start_wda.bat" " {udid}" " {wda_id}" " {port}"
+$ test_bat2.vbs "test_bat2.bat" " 8100" 
 ```
 
-**下面是我的公众号，会不定时发布测试开发相关笔记以及一些读书笔记，欢迎关注。**
+**下面是我的公众号【测试开发小记】，会不定时发布测试开发相关笔记以及一些读书笔记，欢迎关注。**
 
 <p align="center">
   <a><img src="img\wechat.png" alt="微信公众号" width="30%" height="30%" ></a>
