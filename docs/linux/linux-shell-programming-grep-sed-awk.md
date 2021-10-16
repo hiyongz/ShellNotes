@@ -1,5 +1,5 @@
 # Linux三剑客grep、awk和sed介绍
-grep，sed 和 awk是Linux/Unix 系统中常用的三个文本处理的命令行工具，称为文本处理三剑客。本文将简要介绍这三个命令并给出基本用法。<!--more-->
+grep，sed 和 awk是Linux/Unix 系统中常用的三个文本处理的命令行工具，称为文本处理三剑客。本文将简要介绍这三个命令的基本用法以及它们在Windows系统中的使用方法。<!--more-->
 
 ## 管道
 
@@ -552,9 +552,60 @@ $ grep 'topics' nginx.log | sed 's#topics/[0-9]*#topics/number#g' 
 * `;`：把不同的命令分开
 
 
-## 参考资料
+# 在Windows中使用grep、awk和sed
+
+在Windows系统中也可以使用这3个命令，然而，windows cmd不支持这3个命令，因此需要下载对应的Win32版本文件，下面提供几种下载方法：
+1. 开源软件平台SourceForge：[https://sourceforge.net/projects/gnuwin32/files/](https://sourceforge.net/projects/gnuwin32/files/) 
+2. 安装[Git Bash](https://git-scm.com/download/win)：安装方法可参考[Git简易教程-安装及简单使用](https://blog.csdn.net/u010698107/article/details/111414654)，Git Bash的安装目录`~\Git\usr\bin\`下有很多GNU工具。
+3. 我把这三个工具放到了Github上：[hiyongz/ShellNotes](https://github.com/hiyongz/ShellNotes)，可以在上面下载，注意对应的dll文件也需要下载。
+
+安装使用：
+1. 在SourceForge上下载对应的setup文件安装，并添加到环境变量
+2. 或者直接下载对应的二进制文件，解压并添加到环境变量
+
+测试文件test.log的内容：
+
+```text
+log
+log2
+test
+666 log
+```
+
+使用awk和grep命令查询log出现的行：
+
+```bash
+$ awk -F ' ' "/^log/ {print $0}" test.log
+log
+log2
+
+$ grep -n "^log" test.log
+1:log
+2:log2
+```
+
+注意：正则表达式要用双引号。
+
+使用bat脚本进行文本处理：
+
+```bat
+@echo off
+
+set grep="D:/ProgramWorkspace/ShellNotes/grep/grep.exe"
+set wc="D:/ProgramWorkspace/ShellNotes/wc/wc.exe"
+set awk="D:/ProgramWorkspace/ShellNotes/awk/awk.exe"
+set sed="D:/ProgramWorkspace/ShellNotes/sed/sed.exe"
+
+%grep% -n "^log" test.log | %wc% -l > esult.log
+%awk% -F ' ' "/^log/ {print $0}" test.log  >> result.log
+%sed% -n '1,3p' test.log  >> result.log
+
+pause
+```
+
+
+
+**参考资料：**
+
 1. 正则表达式30分钟入门教程：[https://deerchao.cn/tutorials/regex/regex.htm](https://deerchao.cn/tutorials/regex/regex.htm)
 2. [Python正则表达式](https://blog.csdn.net/u010698107/article/details/111568817)
-
-
-

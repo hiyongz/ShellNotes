@@ -39,6 +39,7 @@ Shell笔记
    windows/windows-shell-command.md
    windows/windows-shell-for-networking-management.md
    windows/windows-shortcuts.md
+   windows/windows-notes-for-running-a-bat-file-in-background.md
 
 
 关注公众号【测试开发小记】及时接收最新技术文章！
