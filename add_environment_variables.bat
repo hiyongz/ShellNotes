@@ -1,7 +1,13 @@
 @echo off
 
-REM 添加环境变量：如果已经存在则不添加
+echo ---------------------------------------
+set pan=%~d0
+set filePath=%~p0 
+set filePath=%pan%%filePath%
+echo current path: %filePath%
 
+REM 添加PATH环境变量：如果已经存在则不添加
+echo ---------------------------------------
 SET MYPATHCOPY=%PATH%
 SET add_path=
 
@@ -17,10 +23,20 @@ SET MYPATHCOPY=%PATH%
 call :loop
 if "%flag%"=="0" set add_path=%toAdd%;%add_path%
 
-echo ---------------------------------------
+
 echo add the path: %add_path%
-call set xx=%Path%;%add_path%
-wmic ENVIRONMENT where "name='Path' and username='<system>'" set VariableValue="%xx%"
+REM call set xx=%Path%;%add_path%
+REM wmic ENVIRONMENT where "name='Path' and username='<system>'" set VariableValue="%xx%"
+
+REM 新建系统变量
+echo ---------------------------------------
+
+REM set ENV_Path=%PYTHONPATH%
+
+REM setx /M PYTHONPATH "%filePath%;%filePath%\Scripts"
+
+
+
 
 REM pause
 TIMEOUT /T 10
