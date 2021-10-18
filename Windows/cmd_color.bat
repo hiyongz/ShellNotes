@@ -1,6 +1,6 @@
 @echo off
 
-color 70
+color 74
 
 echo Hello world !
 
