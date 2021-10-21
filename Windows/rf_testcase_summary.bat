@@ -11,33 +11,37 @@ echo %cd%
 :: 设置测试用例路径
 echo Please input the testcase path
 echo Press Enter key to use the default path: %casepath%
-SET /P case_Dir=
+SET /P casepath=
 
 
-IF NOT DEFINED case_Dir SET "case_Dir=%casepath%"
+IF NOT DEFINED casepath SET "casepath=%casepath%"
 
 echo Please input the testsuite name: 
-echo Press Enter key to calculate all of the testsuite file: %casepath%
+echo Press Enter key to summary all of the testsuite file: %suitename%
 
-SET /P suite_name=
+SET /P suitename=
 
-IF NOT DEFINED suite_name goto casecounts
-IF DEFINED suite_name goto casecount
+IF NOT DEFINED suitename goto casecounts
+IF DEFINED suitename goto casecount
 
 :casecounts
-for /f "delims=\" %%a in ('dir /b /a-d /o-d "%casepath%\*.bat"') do (
-  echo %%a
+echo 1111
+echo %casepath%
+cd.>case_summary.log
+for /f "delims=\" %%a in ('dir /b /a-d /o-d "%casepath%"') do (
+  echo %%a case number: 
   awk.exe -F ' ' "/^test_.*|^tiName_.*|case_.*/ {print $0}" %casepath%\%%a | wc -l
-  awk.exe -F ' ' "/^test_.*|^tiName_.*|case_.*/ {print $0}" test.robot > case_summary.log | wc -l
+  awk.exe -F ' ' "/^test_.*|^tiName_.*|case_.*/ {print $0}" %casepath%\%%a >> case_summary.log
+  echo. 
 )
-exit
+
+goto :EOF
 
 :casecount
-awk.exe -F ' ' "/^test_.*|^tiName_.*|case_.*/ {print $0}" %casepath%\%suite_name% | wc -l
-exit
-
-REM set file=%file_Dir%\%file_name%
-
-REM echo file name: %file%
+cd.>case_summary.log
+echo %suitename% case number: 
+awk.exe -F ' ' "/^test_.*|^tiName_.*|case_.*/ {print $0}" %casepath%\%suitename% | wc -l
+awk.exe -F ' ' "/^test_.*|^tiName_.*|case_.*/ {print $0}" %casepath%\%suitename% > case_summary.log
+goto :EOF
 
 pause
