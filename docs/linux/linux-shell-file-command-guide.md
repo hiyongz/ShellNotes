@@ -127,10 +127,40 @@ cat >> ./test.txt <<TEST
 
 **方法四：cat编辑法**　　
 ```bash
+# 追加
 cat >> ./test.txt
+
+# 覆盖
+cat > ./test.txt
 ```
-* 回车后开始编辑输入内容：TEST
-* 按ctrl+d组合键结束编辑。
+* 回车后开始编辑输入内容：TEST，然后回车
+* 按`ctrl+d` 或者 `ctrl+c`组合键结束编辑。
+
+# 清空文件内容
+下面介绍几种清空文件内容的方式
+```bash
+> test.txt
+: > test.txt
+cat /dev/null > test.txt
+echo -n "" > test.txt
+```
+也可以使用 `dd` 和 `truncate`命令来清空内容：
+```bash
+dd of=test.txt count=0
+dd if=/dev/null of=test.txt
+truncate -s 0 test.txt
+```
+这两个命令可以用来生成指定大小的文件，具体使用方法可参考文章[Linux和Windows创建指定大小文件方法](https://blog.csdn.net/u010698107/article/details/118861439)。
+
+还可以使用 `sed` 命令：
+```bash
+sed -i d test.txt
+```
+
+```bash
+sed -i '/^$/d' test.txt # 删除空行
+sed -i 's/ *//g' test.txt # 删除空格
+```
 
 
 ## find命令
