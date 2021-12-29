@@ -23,6 +23,7 @@ Shell笔记
    linux/linux-shell-bash-splitinteger.md   
    linux/linux-shell-for-getopt.md
    linux/linux-regular-expression-and-python-regex.md
+   linux/continuous-integration-skills-for-cron-expression.md
 
 .. toctree::
    :maxdepth: 1   
