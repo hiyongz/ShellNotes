@@ -1,0 +1,13 @@
+--exclude=Err
+--suite
+MX6.01 TestCases.Net Dhcp.Base
+--test
+MX6.01 TestCases.Net Dhcp.Base.test_7.1_请求包包含option12
+--suite
+MX6.01 TestCases.Net Dhcp.Base
+--test
+MX6.01 TestCases.Net Dhcp.Base.test_4.2_永久租约时间
+--suite
+MX6.01 TestCases.Net Dhcp.Base
+--test
+MX6.01 TestCases.Net Dhcp.Base.test_3.1_默认DNS有效性
