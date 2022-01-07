@@ -61,13 +61,24 @@ netstat -i
 ifconfig 网卡名字 
 ```
 ## 路由配置
+### ipv4
 ```bash
-# ipv4
-route add/del -net 192.168.0.0/24 netmask 255.255.255.0 gw 192.168.0.1
+route add/del -net 192.168.0.0/24 netmask 255.255.255.0 gw 192.168.0.1 dev eth1
 route add/del -host 192.168.1.1 dev eth1
 route add -net 23.23.23.0 netmask 255.255.255.0 reject # 屏蔽一条路由
 route add/del default gw 192.168.0.1 #增加/删除默认网关
-# ipv6
+```
+添加永久静态路由（centos7）:
+```bash
+$ vim /etc/sysconfig/network-scripts/route-eth1
+ADDRESS0=192.168.0.0/24
+NETMASK0=255.255.255.0
+GATEWAY0=192.168.0.1
+```
+0表示第一条静态路由。配置完成后重启网络：`systemctl restart network`
+
+### ipv6
+```bash
 ip -6 route add default via fe80::290:4cff:fe88:8888 dev eth1 # 配置默认网关
 ip -6 route add 2001:db8:3333::/64 via fe80::ca3a:35ff:fe09:efa1 dev eth1 # 添加目的网络为2001:db8:3333::/64，下一跳网关为fe80::ca3a:35ff:fe09:efa1的静态路由
 ```
