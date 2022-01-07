@@ -71,7 +71,7 @@ route add/del default gw 192.168.0.1 #增加/删除默认网关
 添加永久静态路由（centos7）:
 ```bash
 $ vim /etc/sysconfig/network-scripts/route-eth1
-ADDRESS0=192.168.0.0/24
+ADDRESS0=192.168.0.0/2
 NETMASK0=255.255.255.0
 GATEWAY0=192.168.0.1
 ```
