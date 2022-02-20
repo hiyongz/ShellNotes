@@ -66,7 +66,7 @@ for file in ${file_name[*]}; do
           img_html='<div align=center> <img src="'$src'" width="70%" height="70%"> </div>'
         elif [ "$file" = "blog_csdn.txt" ]
         then
-          img_html="![]($src#pic_center =500x)"        
+          img_html="![]($src#pic_center =700x)"        
         fi       
         echo $img_html >> $file
 
