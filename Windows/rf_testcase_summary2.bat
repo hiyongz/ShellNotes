@@ -27,7 +27,7 @@ cd.>case_summary.log
 for /f "delims=\" %%a in ('dir /b /a-d /o-d "%casepath%"') do (
   echo %%a case number: 
   %awk% -F ' ' "/^test_.*|case_.*/ {print $0}" %casepath%\%%a | %wc% -l
-  %awk% -F ' ' "/^test_.*|^tiName_.*|case_.*/ {print $0}{ORS="\n"}" %casepath%\%%a >> case_summary.log
+  %awk% -F ' ' "/^test_.*|^tiName_.*|case_.*/ {print $0}" %casepath%\%%a >> case_summary.log
   echo. 
 )
 goto :EOF
