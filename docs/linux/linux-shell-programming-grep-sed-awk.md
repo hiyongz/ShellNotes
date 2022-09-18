@@ -367,6 +367,17 @@ test2
 test3 
 ```
 
+获取第1个括号匹配的内容：
+```bash
+$ cat test.txt
+<argument>e001b3fc14e3f3c1278b45fad750361b64d955841b795245adb1b61a013b749f</argument>
+```
+获取argument标签中的内容
+```bash
+$ sed -e 's/.*<argument>\([a-z0-9]*\).*/\1/' test.txt
+e001b3fc14e3f3c1278b45fad750361b64d955841b795245adb1b61a013b749f
+```
+
 ### 实例6：修改文件
 前面的新增、替换操作都没有改变文件内容，如果要使文件修改生效，需要使用 `-i` 选项。
 ```bash
