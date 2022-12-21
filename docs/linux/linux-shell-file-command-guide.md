@@ -191,7 +191,21 @@ tar -xvzf xxx.tar.gz
 - `-z, --gzip`：通过gzip支持压缩或解压缩
 - `-f, --file`：指定解压文件
 
+压缩zip:
+
+```bash
+$ zip -r test.zip test/
+```
+解压zip文件：
+
+```bash
+$ unzip -d /temp test.zip # 解压到目的目录
+$ unzip -o test.zip  # 覆盖已存在的文件
+$ unzip -n test.zip  # 不覆盖已存在的文件
+```
+
 ## du 命令：显示目录或文件的大小
+
 du（disk usage）命令主要用于显示目录或文件的大小：
 ```bash
 $ du
