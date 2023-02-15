@@ -482,7 +482,7 @@ $ echo "123|456|789" | awk 'BEGIN{RS="|"}{print $0}'
 ```
 
 ## 综合实例
-### 找出log中的404 500的报错有多少条
+### 1、找出log中的404 500的报错有多少条
 ```bash
 $ grep -E ' 404 | 500 ' nginx.log | wc -l
 267
@@ -500,7 +500,7 @@ $ awk '$9~/404|500/{print}' nginx.log | wc -l
 - 波浪号～表示用来匹配后面的正则表达式，告诉awk后面开始是正则语法。
 - `wc -l` ：和`-c`参数一样，统计匹配到的行数
 
-### 访问量最高的ip
+### 2、访问量最高的ip
 #### 使用awk命令查找
 ```bash
 $ awk '{print$1}' nginx.log | sort | uniq -c | sort -nr | head -3
@@ -548,20 +548,39 @@ $ grep -o '^[0-9]*.[0-9]*.[0-9]*.[0-9]*' nginx.log | sort | uniq -c | sort -nr |
 $ 
 ```
 
-### 将 topics 后面的数字替换成numer
+### 3、将 topics 后面的数字替换成numer
+
 ```bash
 $ grep 'topics' nginx.log | sed 's#topics/[0-9]*#topics/number#g' 
 
 ```
 
-### 将ip地址横向打印
+### 4、将ip地址横向打印
+
 ```bash
-[root@centos7 tmp]# awk '{print $1}' nginx.log | sed ':1;N;s/\n/|/g;t1'  
+$ awk '{print $1}' nginx.log | sed ':1;N;s/\n/|/g;t1'  
 216.244.66.241|216.244.66.241|216.244.66.241|216.244.66.241|216.244.66.241|216.244.66.241|216.244.66.241|223.71.41.98|113.87.161.17|216.244.66.241|216.244.66.241|144.76.81.72
 ```
 * `# :1` ：标记  t1
 * `;`：把不同的命令分开
 
+### 5、读取方括号里面的内容
+
+```bash
+# 读取方括号内的字符
+$ echo "[apple][xiaomi][华为][123]" | sed -e 's/]//g' | awk 'BEGIN{RS="["}{print $0}' | sed -e '/^$/d'
+apple
+xiaomi
+华为
+123
+# 计数
+$ echo "[apple][xiaomi][华为][123]" | sed -e 's/]//g' | awk 'BEGIN{RS="["}{print $0}' | sed -e '/^$/d' | wc -l
+4
+# 读取匹配到的第三个值
+$ echo "[apple][xiaomi][华为][123]" | sed -e 's/]//g' | awk 'BEGIN{RS="["}{print $0}' | sed -e '/^$/d' | sed -n '3p'
+华为
+$
+```
 
 # 在Windows中使用grep、awk和sed
 

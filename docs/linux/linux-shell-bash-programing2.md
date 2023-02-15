@@ -88,7 +88,8 @@ MB
 字母字符用`[:alpha:]`表示
 
 ### 判断字符串是否包含某个子串
-使用通配符\*
+#### 1、使用通配符\*
+
 ```sh
 SIZE=10M
 
@@ -97,11 +98,34 @@ then
    echo "$SIZE include M"
 fi
 ```
-或者使用操作符~
+#### 2、使用操作符~
+
 ```sh
 if [[ $SIZE =~ M ]]
 then
    echo "$SIZE include M"
+fi
+```
+
+#### 3、利用grep查找
+
+```bash
+SIZE=10Mb
+result=`echo $SIZE | grep "Mb"`
+if [ "$result" != "" ]
+then
+    echo "$SIZE include Mb"
+fi
+```
+
+#### 4、利用grep查找，不区分大小写
+
+```bash
+SIZE=10Mb
+result=`echo $SIZE | grep -i "mb"`
+if [ "$result" != "" ]
+then
+    echo "The units are correct"
 fi
 ```
 
