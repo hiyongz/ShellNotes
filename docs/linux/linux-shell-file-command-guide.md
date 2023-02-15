@@ -136,7 +136,7 @@ cat > ./test.txt
 * 回车后开始编辑输入内容：TEST，然后回车
 * 按`ctrl+d` 或者 `ctrl+c`组合键结束编辑。
 
-# 清空文件内容
+## 清空文件内容
 下面介绍几种清空文件内容的方式
 ```bash
 > test.txt
@@ -183,15 +183,56 @@ sed -i 's/ *//g' test.txt # 删除空格
 还有其他限制条件，可以通过命令 `man find` 查看
 
 ## 文件解压
+
+### tar文件
+
+tar文件解压：
+
 ```bash
-tar -xvzf xxx.tar.gz
+tar -xvzf xxx.tar.gz -C /opt
 ```
 - `-x, --extract`：解压文件
 - `-v, --verbose`：显示解压日志
 - `-z, --gzip`：通过gzip支持压缩或解压缩
 - `-f, --file`：指定解压文件
+- `-t, --list`：列出压缩包内容
+- `-C, --directory=DIR`：压缩到指定目录
+
+不解压文件，查看包内的文件信息
+
+```bash
+tar -ztvf xxx.tar.gz
+```
+
+压缩为tar.gz文件
+
+```bash
+tar -czf xxx.tar.gz file-name或者DIR
+```
+- `-c, --create`：创建压缩文件 
+
+### zip文件
+
+解压zip文件：
+
+```bash
+$ unzip -d /temp test.zip # 解压到目的目录
+$ unzip -o test.zip  # 覆盖已存在的文件
+$ unzip -n test.zip  # 不覆盖已存在的文件
+```
+查看压缩包文件，不解压
+
+```bash
+$ zip tvf test.zip
+```
+压缩为zip文件:
+
+```bash
+$ zip -r test.zip test/
+```
 
 ## du 命令：显示目录或文件的大小
+
 du（disk usage）命令主要用于显示目录或文件的大小：
 ```bash
 $ du
@@ -207,6 +248,7 @@ du
 - `-k, --kilobytes`：以1024 bytes为单位
 - `-m, --megabytes`：以MB为单位
 - `-s, --summarize`：显示文件总大小
+- `-d, --max-depth=N`：最大深度
 
 实例：
 
