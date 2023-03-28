@@ -77,7 +77,117 @@ $ netsh interface ipv6 show config
 $ wmic nic list brief
 ```
 
+查看IP地址：
+```bash
+$ netsh interface ip show address WAN
+
+Configuration for interface "WAN"
+    DHCP enabled:                         Yes
+    IP Address:                           192.168.3.98
+    Subnet Prefix:                        192.168.3.0/24 (mask 255.255.255.0)
+    Default Gateway:                      192.168.3.252
+    Gateway Metric:                       0
+    InterfaceMetric:                      25
+$ 
+$ netsh interface ipv4 show dnsservers WAN
+
+Configuration for interface "WAN"
+    DNS servers configured through DHCP:  192.168.3.252
+    Register with which suffix:           Primary only
+```
+更多命令：
+```bash
+$ netsh interface ipv4 show /?
+
+The following commands are available:
+
+Commands in this context:
+show addresses - Shows IP address configurations.
+show compartments - Shows compartment parameters.
+show config    - Displays IP address and additional information.
+show destinationcache - Shows destination cache entries.
+show dnsservers - Displays the DNS server addresses.
+show dynamicportrange - Shows dynamic port range configuration parameters.
+show excludedportrange - Shows all excluded port ranges.
+show global    - Shows global configuration parameters.
+show icmpstats - Displays ICMP statistics.
+show interfaces - Shows interface parameters.
+show ipaddresses - Shows current IP addresses.
+show ipnettomedia - Displays IP net-to-media mappings.
+show ipstats   - Displays IP statistics.
+show joins     - Displays multicast groups joined.
+show neighbors - Shows neighbor cache entries.
+show offload   - Displays the offload information.
+show route     - Shows route table entries.
+show subinterfaces - Shows subinterface parameters.
+show tcpconnections - Displays TCP connections.
+show tcpstats  - Displays TCP statistics.
+show udpconnections - Displays UDP connections.
+show udpstats  - Displays UDP statistics.
+show winsservers - Displays the WINS server addresses.
+```
+
+无线网卡信息：`netsh wlan show interface`
+
+```bash
+$ netsh wlan show interface
+
+There is 1 interface on the system:
+
+    Name                   : WLAN 3
+    Description            : Realtek 8832AU Wireless LAN WiFi 6 USB NIC
+    GUID                   : 96c31aeb-d8c6-4d28-8327-444aa5dd04f6
+    Physical address       : c8:3a:35:c1:11:14
+    State                  : connected
+    SSID                   : test_5G
+    BSSID                  : 50:2b:73:c3:72:06
+    Network type           : Infrastructure
+    Radio type             : 802.11ax
+    Authentication         : WPA2-Personal
+    Cipher                 : CCMP
+    Connection mode        : Profile
+    Channel                : 64
+    Receive rate (Mbps)    : 1201
+    Transmit rate (Mbps)   : 1201
+    Signal                 : 100%
+    Profile                : test_5G
+
+    Hosted network status  : Not available
+```
+
+断开无线WiFi：
+
+```bash
+$ netsh wlan disconnect
+```
+
+更多`netsh wlan`命令：
+
+```bash
+$ netsh wlan /?
+
+The following commands are available:
+
+Commands in this context:
+?              - Displays a list of commands.
+add            - Adds a configuration entry to a table.
+connect        - Connects to a wireless network.
+delete         - Deletes a configuration entry from a table.
+disconnect     - Disconnects from a wireless network.
+dump           - Displays a configuration script.
+export         - Saves WLAN profiles to XML files.
+help           - Displays a list of commands.
+IHV            - Commands for IHV logging.
+refresh        - Refresh hosted network settings.
+reportissues   - Generate WLAN smart trace report.
+set            - Sets configuration information.
+show           - Displays information.
+start          - Start hosted network.
+stop           - Stop hosted network.
+```
+
 ## 路由配置
+
 `route add [Destination] mask [netmask] [gw] metric [测量值]`
 * -p：添加永久路由
 * Destination： 指定该路由的网络目标。
